@@ -125,7 +125,8 @@ return function()
 		},
 		update_focused_file = {
 			enable = true,
-			update_root = { enable = true },
+			update_root = { enable = false },
+			update_cwd = false,
 		},
 		trash = {
 			cmd = "gio trash",
