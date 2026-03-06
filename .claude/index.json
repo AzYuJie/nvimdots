@@ -1,0 +1,205 @@
+{
+  "timestamp": "2026-03-06T16:15:39+08:00",
+  "project": {
+    "name": "虞桀的 Neovim 配置",
+    "type": "neovim-config",
+    "base": "ayamir/nvimdots",
+    "neovim_version": "0.11+"
+  },
+  "structure": {
+    "root": {
+      "path": "/Users/aizen/.config/nvim",
+      "claude_md": "CLAUDE.md"
+    },
+    "modules": [
+      {
+        "name": "core",
+        "path": "lua/core",
+        "claude_md": "lua/core/CLAUDE.md",
+        "entry": "init.lua",
+        "files": [
+          "init.lua",
+          "global.lua",
+          "settings.lua",
+          "options.lua",
+          "pack.lua",
+          "event.lua"
+        ],
+        "description": "核心初始化模块"
+      },
+      {
+        "name": "keymap",
+        "path": "lua/keymap",
+        "claude_md": "lua/keymap/CLAUDE.md",
+        "entry": "init.lua",
+        "files": [
+          "init.lua",
+          "bind.lua",
+          "helpers.lua",
+          "completion.lua",
+          "editor.lua",
+          "tool.lua",
+          "ui.lua",
+          "lang.lua"
+        ],
+        "description": "快捷键映射模块"
+      },
+      {
+        "name": "modules",
+        "path": "lua/modules",
+        "claude_md": "lua/modules/CLAUDE.md",
+        "subdirs": [
+          "plugins",
+          "configs",
+          "utils"
+        ],
+        "files": [
+          "plugins/completion.lua",
+          "plugins/editor.lua",
+          "plugins/lang.lua",
+          "plugins/tool.lua",
+          "plugins/ui.lua",
+          "utils/init.lua",
+          "utils/icons.lua",
+          "utils/keymap.lua",
+          "utils/dap.lua"
+        ],
+        "description": "插件声明与配置模块"
+      },
+      {
+        "name": "user",
+        "path": "lua/user",
+        "claude_md": "lua/user/CLAUDE.md",
+        "gitignored": true,
+        "description": "用户自定义配置模块"
+      }
+    ]
+  },
+  "plugins": {
+    "categories": {
+      "completion": [
+        "nvim-lspconfig",
+        "nvim-cmp",
+        "LuaSnip",
+        "copilot.lua",
+        "lspsaga.nvim",
+        "none-ls.nvim",
+        "mason.nvim"
+      ],
+      "editor": [
+        "nvim-treesitter",
+        "Comment.nvim",
+        "persisted.nvim",
+        "hop.nvim",
+        "flash.nvim",
+        "grug-far.nvim",
+        "autoclose.nvim"
+      ],
+      "lang": [
+        "go.nvim",
+        "rustaceanvim",
+        "crates.nvim",
+        "render-markdown.nvim",
+        "markdown-preview.nvim"
+      ],
+      "tool": [
+        "nvim-tree.lua",
+        "toggleterm.nvim",
+        "telescope.nvim",
+        "nvim-dap",
+        "nvim-dap-ui",
+        "codecompanion.nvim",
+        "which-key.nvim"
+      ],
+      "ui": [
+        "catppuccin",
+        "alpha-nvim",
+        "bufferline.nvim",
+        "lualine.nvim",
+        "nvim-notify",
+        "gitsigns.nvim",
+        "indent-blankline.nvim"
+      ]
+    },
+    "manager": "lazy.nvim"
+  },
+  "keymaps": {
+    "leader": "Space",
+    "categories": {
+      "plugin": "<leader>p",
+      "find": "<leader>f",
+      "git": "<leader>g",
+      "debug": "<leader>d",
+      "codecompanion": "<leader>c",
+      "session": "<leader>s",
+      "search_replace": "<leader>S",
+      "lsp": "<leader>l",
+      "buffer": "<leader>b",
+      "window": "<leader>W"
+    }
+  },
+  "lsp": {
+    "servers": [
+      "bashls",
+      "clangd",
+      "gopls",
+      "html",
+      "jsonls",
+      "lua_ls",
+      "ruff",
+      "zuban"
+    ],
+    "formatters": [
+      "clang_format",
+      "gofumpt",
+      "goimports",
+      "prettier",
+      "shfmt",
+      "stylua",
+      "vint"
+    ],
+    "dap_clients": [
+      "codelldb",
+      "delve",
+      "python"
+    ]
+  },
+  "coverage": {
+    "total_files": 104,
+    "scanned_files": 30,
+    "percentage": "28.8%",
+    "scanned_categories": [
+      "入口文件",
+      "核心模块",
+      "快捷键模块",
+      "插件声明",
+      "工具函数"
+    ],
+    "gaps": {
+      "missing_configs": [
+        "lua/modules/configs/completion/*.lua（大部分插件配置）",
+        "lua/modules/configs/editor/*.lua",
+        "lua/modules/configs/tool/*.lua",
+        "lua/modules/configs/ui/*.lua",
+        "lua/modules/configs/lang/*.lua"
+      ],
+      "missing_tests": [
+        "项目无测试文件"
+      ],
+      "notes": [
+        "user/ 目录在 .gitignore 中，可能不存在或内容不同",
+        "configs/ 目录下的插件配置文件较多，已扫描代表性样本"
+      ]
+    }
+  },
+  "ignored": {
+    "patterns": [
+      "lua/modules/plugins/custom.lua",
+      "lua/modules/configs/custom/**",
+      "lua/user/**",
+      "result/**",
+      ".git/**",
+      ".github/**"
+    ]
+  }
+}
