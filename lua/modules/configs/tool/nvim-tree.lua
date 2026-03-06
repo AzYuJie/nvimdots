@@ -66,7 +66,7 @@ return function()
 		actions = {
 			use_system_clipboard = true,
 			change_dir = {
-				enable = true,
+				enable = false, -- 禁止 nvim-tree 改变目录，保持启动时的根目录
 				global = false,
 			},
 			open_file = {
@@ -124,7 +124,7 @@ return function()
 			custom = { ".DS_Store" },
 		},
 		update_focused_file = {
-			enable = true,
+			enable = false, -- 这个SB选项会导致打开文件后nvim-tree根目录跟着变
 			update_root = { enable = false },
 			update_cwd = false,
 		},

@@ -10,13 +10,15 @@ return function()
 	local base_opts = use_fzf and { fzf_opts = { ["--layout"] = (prompt_pos == "top" and "reverse" or "default") } }
 		or {}
 
-	---Returns current directory and whether it's a Git repo root
-	---@return string @Current working directory
+	-- 艹，保存启动时的根目录，别让这个SB cwd到处乱跑
+	local startup_root = vim.uv.cwd()
+
+	---Returns startup root directory and whether it's a Git repo root
+	---@return string @Startup root directory
 	---@return boolean|nil @true if `.git` folder exists here, false if `.git` exists but isn't folder, nil if `.git` missing
 	local function get_root_info()
-		local cwd = vim.uv.cwd()
-		local stat = vim.uv.fs_stat(".git")
-		return cwd, stat and stat.type == "directory"
+		local stat = vim.uv.fs_stat(startup_root .. "/.git")
+		return startup_root, stat and stat.type == "directory"
 	end
 
 	---Creates a file search function based on backend and context
@@ -28,6 +30,7 @@ return function()
 		return function()
 			local cwd, is_git = get_root_info()
 			local opts = vim.deepcopy(base_opts, true)
+			opts.cwd = cwd -- 艹，明确指定搜索目录，别跟着cwd乱跑
 			if cwd == vim_path then
 				opts.no_ignore = true
 				return (use_fzf and fzf[fzf_fn] or tb_fn)(opts)
@@ -48,13 +51,14 @@ return function()
 	---@return fun():any @Function that runs the selected grep with proper options
 	local function grep_searcher(fzf_fn, tb_fn)
 		return function()
-			local cwd = vim.uv.cwd()
+			local cwd = get_root_info() -- 艹，用启动时的根目录，别用当前目录
 			local opts = vim.deepcopy(base_opts, true)
+			opts.cwd = cwd -- 明确指定搜索目录
 			if cwd == vim_path then
 				if use_fzf then
 					opts.no_ignore = true
 				else
-					opts = { additional_args = { "--no-ignore" } }
+					opts = { additional_args = { "--no-ignore" }, cwd = cwd }
 				end
 			end
 			return (use_fzf and fzf[fzf_fn] or tb_fn)(opts)
