@@ -12,9 +12,9 @@ return function()
 		hijack_cursor = true,
 		hijack_netrw = false,
 		hijack_unnamed_buffer_when_opening = true,
-		respect_buf_cwd = true,
-		prefer_startup_root = false,
-		sync_root_with_cwd = true,
+		respect_buf_cwd = false,
+		prefer_startup_root = true,
+		sync_root_with_cwd = false,
 		renderer = {
 			full_name = false,
 			group_empty = true,
