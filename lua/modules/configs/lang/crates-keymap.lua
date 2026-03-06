@@ -9,14 +9,14 @@ local crates_keymap = {
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Toggle spec activities"),
+		:with_desc("crates: 切换 spec 活动"),
 	["n|<leader>cr"] = map_callback(function()
 			crates.reload()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Reload crate specs"),
+		:with_desc("crates: 重新加载 crate 配置"),
 
 	["n|<leader>cs"] = map_callback(function()
 			crates.show_popup()
@@ -24,7 +24,7 @@ local crates_keymap = {
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Toggle pop-up window"),
+		:with_desc("crates: 切换弹出窗口"),
 	["n|<leader>cv"] = map_callback(function()
 			crates.show_versions_popup()
 			crates.show_popup()
@@ -32,7 +32,7 @@ local crates_keymap = {
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Select spec versions"),
+		:with_desc("crates: 选择 spec 版本"),
 	["n|<leader>cf"] = map_callback(function()
 			crates.show_features_popup()
 			crates.show_popup()
@@ -40,7 +40,7 @@ local crates_keymap = {
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Select spec features"),
+		:with_desc("crates: 选择 spec 特性"),
 	["n|<leader>cd"] = map_callback(function()
 			crates.show_dependencies_popup()
 			crates.show_popup()
@@ -48,7 +48,7 @@ local crates_keymap = {
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Show project dependencies"),
+		:with_desc("crates: 显示项目依赖"),
 
 	["n|<leader>cu"] = map_callback(function()
 			crates.update_crate()
@@ -56,42 +56,42 @@ local crates_keymap = {
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Update current crate's spec"),
+		:with_desc("crates: 更新当前 crate 配置"),
 	["v|<leader>cu"] = map_callback(function()
 			crates.update_crates()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Update selected crate's spec"),
+		:with_desc("crates: 更新选中的 crate 配置"),
 	["n|<leader>ca"] = map_callback(function()
 			crates.update_all_crates()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Update all crates' specs"),
+		:with_desc("crates: 更新所有 crate 配置"),
 	["n|<leader>cU"] = map_callback(function()
 			crates.upgrade_crate()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Upgrade current crate"),
+		:with_desc("crates: 升级当前 crate"),
 	["v|<leader>cU"] = map_callback(function()
 			crates.upgrade_crates()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Upgrade selected crates"),
+		:with_desc("crates: 升级选中的 crates"),
 	["n|<leader>cA"] = map_callback(function()
 			crates.upgrade_all_crates()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Upgrade all crates"),
+		:with_desc("crates: 升级所有 crates"),
 
 	["n|<leader>cH"] = map_callback(function()
 			crates.open_homepage()
@@ -99,28 +99,28 @@ local crates_keymap = {
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Open current crate's homepage"),
+		:with_desc("crates: 打开当前 crate 主页"),
 	["n|<leader>cR"] = map_callback(function()
 			crates.open_repository()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Open current crate's repository"),
+		:with_desc("crates: 打开当前 crate 仓库"),
 	["n|<leader>cD"] = map_callback(function()
 			crates.open_documentation()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Open current crate's documentation"),
+		:with_desc("crates: 打开当前 crate 文档"),
 	["n|<leader>cC"] = map_callback(function()
 			crates.open_crates_io()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_buffer(0)
-		:with_desc("crates: Browse current crate on crates.io"),
+		:with_desc("crates: 在 crates.io 浏览当前 crate"),
 }
 
 bind.nvim_load_mapping(crates_keymap)

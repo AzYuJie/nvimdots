@@ -8,7 +8,7 @@ local debug_keymap = {
 	["nv|K"] = map_cmd("<Cmd>lua require('dapui').eval()<CR>")
 		:with_noremap()
 		:with_nowait()
-		:with_desc("Evaluate expression under cursor"),
+		:with_desc("调试: 计算光标下表达式"),
 }
 
 function M.load_extras()

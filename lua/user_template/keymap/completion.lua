@@ -9,7 +9,7 @@ mappings["plug_map"] = {}
 mappings["lsp"] = function(buf)
 	return {
 		-- Example
-		["n|K"] = require("keymap.bind").map_cr("Lspsaga hover_doc"):with_buffer(buf):with_desc("lsp: Show doc"),
+		["n|K"] = require("keymap.bind").map_cr("Lspsaga hover_doc"):with_buffer(buf):with_desc("LSP: 显示文档"),
 	}
 end
 
