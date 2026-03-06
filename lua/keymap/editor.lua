@@ -10,12 +10,40 @@ local ts_to_swap = require("nvim-treesitter-textobjects.swap")
 local ts_to_move = require("nvim-treesitter-textobjects.move")
 local ts_to_repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
 
+-- Smart quit with confirmation for unsaved buffers
+local function smart_quit()
+	local modified_buffers = {}
+	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_get_option_value("modified", { buf = bufnr }) then
+			local name = vim.api.nvim_buf_get_name(bufnr)
+			if name == "" then
+				name = "[No Name]"
+			else
+				name = vim.fn.fnamemodify(name, ":t")
+			end
+			table.insert(modified_buffers, name)
+		end
+	end
+
+	if #modified_buffers > 0 then
+		local msg = "存在未保存的文件:\n  - " .. table.concat(modified_buffers, "\n  - ")
+		msg = msg .. "\n\n是否强制退出？"
+		local confirm = vim.fn.confirm(msg, "&Yes\n&No", 2, "Question")
+		if confirm == 1 then
+			vim.cmd("qa!")
+		end
+	else
+		vim.cmd("qa")
+	end
+end
+
 local mappings = {
 	builtins = {
 		-- Builtins: Save & Quit
 		["n|<C-s>"] = map_cu("write"):with_noremap():with_silent():with_desc("编辑: 保存文件"),
 		["n|<C-q>"] = map_cr("wq"):with_desc("编辑: 保存并退出"),
 		["n|<A-S-q>"] = map_cr("q!"):with_desc("编辑: 强制退出"),
+		["n|<leader>qq"] = map_callback(smart_quit):with_silent():with_desc("编辑: 智能退出"),
 
 		-- Builtins: Insert mode
 		["i|<C-u>"] = map_cmd("<C-G>u<C-U>"):with_noremap():with_desc("编辑: 删除前一个块"),
