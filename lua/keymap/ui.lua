@@ -8,6 +8,7 @@ local mappings = {
 	builtins = {
 		-- Builtins: Buffer
 		["n|<leader>bn"] = map_cu("enew"):with_noremap():with_silent():with_desc("缓冲区: 新建"),
+		["n|<leader>ne"] = map_cr("b#"):with_noremap():with_silent():with_desc("缓冲区: 跳转到上一个编辑的文件"),
 
 		-- Builtins: Terminal
 		["t|<C-w>h"] = map_cmd("<Cmd>wincmd h<CR>"):with_silent():with_noremap():with_desc("窗口: 聚焦左侧"),

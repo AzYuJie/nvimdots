@@ -85,10 +85,8 @@ local mappings = {
 		["n|<leader>o"] = map_cr("setlocal spell! spelllang=en_us"):with_desc("编辑: 切换拼写检查"),
 	},
 	plugins = {
-		-- Plugin: persisted.nvim
-		["n|<leader>ss"] = map_cu("SessionSave"):with_noremap():with_silent():with_desc("会话: 保存"),
-		["n|<leader>sl"] = map_cu("SessionLoad"):with_noremap():with_silent():with_desc("会话: 加载当前"),
-		["n|<leader>sd"] = map_cu("SessionDelete"):with_noremap():with_silent():with_desc("会话: 删除"),
+		-- Save file (alternative to <C-s>)
+		["n|<leader>ss"] = map_cu("write"):with_noremap():with_silent():with_desc("编辑: 保存文件"),
 
 		-- Plugin: comment.nvim
 		["n|gcc"] = map_callback(function()

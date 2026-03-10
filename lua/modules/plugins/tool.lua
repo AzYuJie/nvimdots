@@ -107,10 +107,6 @@ tool["nvim-telescope/telescope.nvim"] = {
 		{ "nvim-telescope/telescope-live-grep-args.nvim" },
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		{
-			"ayamir/search.nvim",
-			config = require("tool.search"),
-		},
-		{
 			"DrKJeff16/project.nvim",
 			event = { "CursorHold", "CursorHoldI" },
 			config = require("tool.project"),
@@ -125,6 +121,13 @@ tool["nvim-telescope/telescope.nvim"] = {
 			},
 		},
 	},
+}
+-- search.nvim 必须在 telescope.nvim 完成配置后加载，因为它依赖 Telescope 扩展
+tool["ayamir/search.nvim"] = {
+	lazy = true,
+	event = "VeryLazy",
+	config = require("tool.search"),
+	dependencies = { "nvim-telescope/telescope.nvim" },
 }
 
 ----------------------------------------------------------------------
