@@ -82,6 +82,23 @@ _G._toggle_lazygit = function()
 	end
 end
 
+local _lazysql = nil
+_G._toggle_lazysql = function()
+	if vim.fn.executable("lazysql") == 1 then
+		if not _lazysql then
+			_lazysql = require("toggleterm.terminal").Terminal:new({
+				cmd = "lazysql",
+				direction = "float",
+				close_on_exit = true,
+				hidden = true,
+			})
+		end
+		_lazysql:toggle()
+	else
+		vim.notify("Command [lazysql] not found!", vim.log.levels.ERROR, { title = "toggleterm.nvim" })
+	end
+end
+
 _G._select_chat_model = function()
 	local actions = require("telescope.actions")
 	local action_state = require("telescope.actions.state")

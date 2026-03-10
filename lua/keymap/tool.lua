@@ -79,6 +79,12 @@ local mappings = {
 			:with_noremap()
 			:with_silent()
 			:with_desc("Git: 切换 lazygit"),
+		["n|<leader>gl"] = map_callback(function()
+				_toggle_lazysql()
+			end)
+			:with_noremap()
+			:with_silent()
+			:with_desc("数据库: 切换 lazysql"),
 
 		-- Plugin: trouble
 		["n|gt"] = map_cr("Trouble diagnostics toggle")
